@@ -14,5 +14,4 @@ microservice, here. I will be making a model with fields for with the manufactur
 
 ## Hats microservice
 
-Explain your models and integration with the wardrobe
-microservice, here.
+The model will be tracking the hats fabric, its style name, its color, a URL for a picture, and the location in the wardrobe where it exists.Creating React components to show a list of all hats and their details, also show a form to create a new hat. ALso provide a way to delete a hat
