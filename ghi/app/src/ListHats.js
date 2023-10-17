@@ -1,5 +1,28 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-function ListHats({ hats }) {
+function ListHats() {
+  const [hats, setHats] = useState([]);
+
+  async function loadHats() {
+    const hatResponse = await fetch("http://localhost:8090/api/hats/");
+    if (hatResponse.ok) {
+      const hatData = await hatResponse.json();
+      setHats(hatData.hats);
+    } else {
+      setHats([]);
+    }
+  }
+  loadHats();
+  const handleDelete = async (event) => {
+    const hatId = event.target.value;
+    const hatURL = `http://localhost:8090/api/hats/${hatId}`;
+    const fetchConfig = { method: "delete",};
+    const response = await fetch(hatURL, fetchConfig);
+    if (response.status === 200) {
+      const updatedhatlist = hats.filter((hat) => hat.id !== hatId);
+      setHats(updatedhatlist);
+    }
+  };
   return (
     <>
       <table className="table table-striped">
@@ -23,6 +46,11 @@ function ListHats({ hats }) {
                 <td>
                   {hat.location.closet_name} -{hat.location.section_number} /
                   {hat.location.shelf_number}
+                </td>
+                <td>
+                  <button onClick={handleDelete} value={hat.id}>
+                    delete
+                  </button>
                 </td>
               </tr>
             );

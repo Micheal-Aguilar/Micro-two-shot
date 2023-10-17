@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+
 const HatsForm = () => {
   const [locations, setLocations] = useState([]);
   const [fabric, setFabric] = useState("");
@@ -74,8 +75,9 @@ const HatsForm = () => {
     setColor("");
     setPictureURL("");
     setLocation("");
-  };
-  console.log(location)
+    };
+
+    
   return (
     <>
       <div className="row">
