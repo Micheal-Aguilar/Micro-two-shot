@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,32 +8,19 @@ root.render(
     <App />
   </React.StrictMode>
 );
-async function loadShoes() {
-  const response = await fetch("http://localhost:8080/api/shoes/");
-  if (response.ok) {
-    const data = await response.json();
+async function loadShoesAndHats() {
+  const shoeResponse = await fetch("http://localhost:8080/api/shoes/");
+  const hatResponse = await fetch("http://localhost:8090/api/hats/");
+  if (shoeResponse.ok && hatResponse.ok) {
+    const shoeData = await shoeResponse.json();
+    const hatData = await hatResponse.json();
     root.render(
       <React.StrictMode>
-        <App shoes={data.shoes} />
+        <App shoes={shoeData.shoes} hats={hatData.hats} />
       </React.StrictMode>
     );
   } else {
-    console.error(response);
+    console.error(shoeResponse, hatResponse);
   }
 }
-loadShoes();
-
-async function loadHats() {
-  const response = await fetch("http://localhost:8090/api/hats/");
-  if (response.ok) {
-    const data = await response.json();
-    root.render(
-      <React.StrictMode>
-        <App hats={data.hats} />
-      </React.StrictMode>
-    );
-  } else {
-    console.error(response);
-  }
-}
-loadHats();
+loadShoesAndHats();
