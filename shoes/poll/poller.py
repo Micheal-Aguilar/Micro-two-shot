@@ -20,7 +20,7 @@ def get_bins():
     for b in content['bins']:
         BinVO.objects.update_or_create(
             import_href=b['href'],
-            defaults = {"closet_name": b['closet_name']},)
+            defaults = {"closet_name": b['closet_name'], "bin_number": b['bin_number'], "bin_size":b['bin_size']}, )
 
 def poll():
     while True:
