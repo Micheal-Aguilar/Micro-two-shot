@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 function ListHats() {
   const [hats, setHats] = useState([]);
@@ -12,11 +12,13 @@ function ListHats() {
       setHats([]);
     }
   }
-  loadHats();
+  useEffect(() => {
+    loadHats();
+  }, [hats]);
   const handleDelete = async (event) => {
     const hatId = event.target.value;
     const hatURL = `http://localhost:8090/api/hats/${hatId}`;
-    const fetchConfig = { method: "delete",};
+    const fetchConfig = { method: "delete" };
     const response = await fetch(hatURL, fetchConfig);
     if (response.status === 200) {
       const updatedhatlist = hats.filter((hat) => hat.id !== hatId);
