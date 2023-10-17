@@ -17,9 +17,12 @@ class ShoeListEncoder(ModelEncoder):
     encoders = {"assigned_bin": BinVOEncoder()}
 
 @require_http_methods(["GET", "POST"])
-def api_list_shoes(request):
+def api_list_shoes(request, bin_vo_id=None):
     if request.method == "GET":
-        shoes = Shoe.objects.all()
+        if bin_vo_id is not None:
+            shoes = Shoe.objects.filter(assigned_bin=bin_vo_id)
+        else:
+            shoes = Shoe.objects.all()
         return JsonResponse({'shoes': shoes}, encoder=ShoeListEncoder)
     else:
         content = json.loads(request.body)
