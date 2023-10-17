@@ -18,7 +18,7 @@ class LocationVOEncoder(ModelEncoder):
 
 class HatListEncoder(ModelEncoder):
     model = Hat
-    properties = ["fabric", "style_name", "color", "picture_url", "location"]
+    properties = ["fabric", "style_name", "color", "picture_url", "location","id"]
     encoders = {"location": LocationVOEncoder()}
 
 
@@ -43,3 +43,10 @@ def api_list_hats(request, location_vo_id=None):
         # Now let's FINALLY make some damn hats: aka HABERDASHER
         hats = Hat.objects.create(**content)
         return JsonResponse(hats, encoder=HatListEncoder, safe=False)
+
+
+@require_http_methods(["DELETE"])
+def api_show_hats(request, id):
+    request.method == "DELETE"
+    count, _ = Hat.objects.filter(id=id).delete()
+    return JsonResponse({"deleted": count > 0})
