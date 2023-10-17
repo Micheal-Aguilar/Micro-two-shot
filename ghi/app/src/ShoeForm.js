@@ -66,7 +66,6 @@ const ShoeForm = () => {
     const response = await fetch(shoeUrl, fetchConfig);
     if (response.ok) {
       const newShoe = await response.json();
-      console.log(newShoe);
     }
 
     setModelName("");
@@ -75,7 +74,6 @@ const ShoeForm = () => {
     setPictureURL("");
     setBin("");
   };
-  console.log(bins);
   return (
     <>
       <div className="row">

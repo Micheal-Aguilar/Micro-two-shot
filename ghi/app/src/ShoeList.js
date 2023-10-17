@@ -1,6 +1,32 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+const ShoeList = () => {
+  const [shoeList, setShoeList] = useState([]);
 
-const ShoeList = ({ shoes }) => {
+  const getShoeList = async () => {
+    const shoeResponse = await fetch("http://localhost:8080/api/shoes/");
+    if (shoeResponse.ok) {
+      const shoeData = await shoeResponse.json();
+      setShoeList(shoeData.shoes);
+    } else {
+      setShoeList([]);
+    }
+  };
+  getShoeList();
+
+  const handleDelete = async (event) => {
+    const shoeId = event.target.value;
+    const shoeUrl = `http://localhost:8080/api/shoes/${shoeId}`;
+    const fetchConfig = {
+      method: "delete",
+    };
+    const response = await fetch(shoeUrl, fetchConfig);
+    if (response.status === 200) {
+      const updatedShoeList = shoeList.filter((shoe) => shoe.id !== shoeId);
+      setShoeList(updatedShoeList);
+    }
+  };
+
   return (
     <>
       <table className="table table-striped">
@@ -14,18 +40,26 @@ const ShoeList = ({ shoes }) => {
           </tr>
         </thead>
         <tbody>
-          {shoes.map((shoe) => {
+          {shoeList.map((shoe) => {
             return (
               <tr key={shoe.id}>
                 <td>{shoe.model_name}</td>
                 <td>{shoe.manufacturer_name}</td>
                 <td>{shoe.color}</td>
                 <td>
-                  {" "}
-                  {shoe.assigned_bin.closet_name} -{" "}
+                  {shoe.assigned_bin.closet_name} -
                   {shoe.assigned_bin.bin_number}/{shoe.assigned_bin.bin_size}
                 </td>
                 <td>{shoe.picture_url}</td>
+                <td>
+                  <button
+                    onClick={handleDelete}
+                    className="btn btn-primary"
+                    value={shoe.id}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}

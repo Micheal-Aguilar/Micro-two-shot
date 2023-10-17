@@ -8,19 +8,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-async function loadShoesAndHats() {
-  const shoeResponse = await fetch("http://localhost:8080/api/shoes/");
-  const hatResponse = await fetch("http://localhost:8090/api/hats/");
-  if (shoeResponse.ok && hatResponse.ok) {
-    const shoeData = await shoeResponse.json();
-    const hatData = await hatResponse.json();
-    root.render(
-      <React.StrictMode>
-        <App shoes={shoeData.shoes} hats={hatData.hats} />
-      </React.StrictMode>
-    );
-  } else {
-    console.error(shoeResponse, hatResponse);
-  }
-}
-loadShoesAndHats();

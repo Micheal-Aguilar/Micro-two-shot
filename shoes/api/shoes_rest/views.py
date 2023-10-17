@@ -13,7 +13,7 @@ class BinVOEncoder(ModelEncoder):
     properties = ["closet_name", "import_href", "bin_number", "bin_size"]
 class ShoeListEncoder(ModelEncoder):
     model = Shoe
-    properties = ["model_name", "manufacturer_name", "color", "picture_url", "assigned_bin"]
+    properties = ["model_name", "manufacturer_name", "color", "picture_url", "assigned_bin", 'id']
     encoders = {"assigned_bin": BinVOEncoder()}
 
 @require_http_methods(["GET", "POST"])
@@ -38,3 +38,9 @@ def api_list_shoes(request, bin_vo_id=None):
 
         shoe = Shoe.objects.create(**content)
         return JsonResponse(shoe, encoder=ShoeListEncoder, safe=False)
+
+
+@require_http_methods(['DELETE'])
+def api_show_shoe(request, id):
+    count, _ = Shoe.objects.filter(id=id).delete()
+    return JsonResponse({"deleted": count > 0})

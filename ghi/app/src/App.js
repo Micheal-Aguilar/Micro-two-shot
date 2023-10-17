@@ -1,12 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from './MainPage';
-import Nav from './Nav';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./MainPage";
+import Nav from "./Nav";
 import ListHats from "./ListHats";
 import HatsForm from "./HatsForm";
 import ShoeList from "./ShoeList";
 import ShoeForm from "./ShoeForm";
 
-function App({hats , shoes}) {
+function App() {
   return (
     <BrowserRouter>
       <Nav />
@@ -14,13 +14,13 @@ function App({hats , shoes}) {
         <Routes>
           <Route index element={<MainPage />} />
           <Route path="hats">
-            <Route index element={<ListHats hats={hats} />} />
+            <Route index element={<ListHats />} />
             <Route path="new" element={<HatsForm />} />
           </Route>
           <Route path="shoes">
-            <Route index element={<ShoeList shoes={shoes} />} />
+            <Route index element={<ShoeList />} />
             <Route path="new" element={<ShoeForm />} />
-            </Route>
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
