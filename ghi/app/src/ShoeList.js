@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const ShoeList = () => {
   const [shoeList, setShoeList] = useState([]);
 
@@ -12,7 +12,10 @@ const ShoeList = () => {
       setShoeList([]);
     }
   };
-  getShoeList();
+
+  useEffect(() => {
+    getShoeList();
+  }, [shoeList]);
 
   const handleDelete = async (event) => {
     const shoeId = event.target.value;
