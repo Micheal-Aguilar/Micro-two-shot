@@ -11,9 +11,13 @@ Team:
 
 With in the shoes microservice there will be a model for the actual shoe and a mode for the bin that the shoe is in. The model for the bin will be a value object and will have fields for href, closet name, bin number and bin size. The shoe model will include fields for the manufacturer name, color, model name, a picture url, and which bin the shoe is in.
 
-In the poller there will be a model for the bin as well. The poller will reach out to the wardrobe api at http://wardrobe-api:8000/api/bins/ to get the current list of bins. Each of the bins will then have an instance created in the shoe api.
+In the poller there will be a model for the bin as well. The poller will reach out to the wardrobe api at `http://wardrobe-api:8000/api/bins/` to get the current list of bins. Each of the bins will then have an instance created in the shoe api.
 
-The shoe api will have the following routes: - api/shoes : This route is to get the list of all shoes. - api/bin/bin_id/shoes : This route is used to get the list of all shoes contained in a specific bin. - api/shoes/shoe_id : This route will be used to delete a certain shoe.
+The shoe api will have the following routes:
+
+- `http:localhost:8080/api/shoes` This route is to get the list of all shoes.
+- `http:localhost:8080/api/bin/bin_id/shoes` This route is used to get the list of all shoes contained in a specific bin.
+- `http:localhost:8080/api/shoes/shoe_id` This route will be used to delete a certain shoe.
 
 ## Hats microservice
 
@@ -23,7 +27,7 @@ The Hats Microservice is a RESTful API that provides information about various t
 ## How to use this repo
 
 - Clone this repo
-- git clone https://gitlab.com/Onkurlal/microservice-two-shot.git
+  - git clone `https://gitlab.com/Onkurlal/microservice-two-shot.git`
 - Navigate to microservice-two-shot
   - cd microservice-two-shot
 - Link volume
@@ -32,4 +36,4 @@ The Hats Microservice is a RESTful API that provides information about various t
   - docker-compose build
 - Build docker containers from images
   - docker-compose up
-- Access the frontend react app on http://localhost:3000
+- Access the frontend react app on `http://localhost:3000`
