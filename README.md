@@ -21,19 +21,18 @@ The shoe api will have the following routes:
 
 ## Hats microservice
 
-
 The Hats Microservice is a RESTful API that provides information about various types of hats. This service allows users to retrieve data on different hat styles, their attributes, and related information.It also provides a RESTful API for retrieving information about hats. You can make HTTP requests to the provided endpoints to access the data.The Poller file will get data from the wardrobe api to get the list of locations the hats are in. Each location will be created in the hats api.The Hats api will have the following routes : "api/hats". this route goes into the data and get the list of all the hats. To get the route for the shoes in a specific location you would use "api/location/location_id.hats". To be able to delete a hat from the database you would use this route "api/hats/hat_id" to be able to do that.
 
 ## How to use this repo
 
 - Clone this repo
-  - git clone `https://gitlab.com/Onkurlal/microservice-two-shot.git`
+  - `git clone https://gitlab.com/Onkurlal/microservice-two-shot.git`
 - Navigate to microservice-two-shot
-  - cd microservice-two-shot
+  - `cd microservice-two-shot`
 - Link volume
-  - docker volume create two-shot-pgdata
+  - `docker volume create two-shot-pgdata`
 - Build docker images
-  - docker-compose build
+  - `docker-compose build`
 - Build docker containers from images
-  - docker-compose up
+  - `docker-compose up`
 - Access the frontend react app on `http://localhost:3000`
