@@ -17,7 +17,8 @@ The shoe api will have the following routes: - api/shoes : This route is to get 
 
 ## Hats microservice
 
-The model will be tracking the hats fabric, its style name, its color, a URL for a picture, and the location in the wardrobe where it exists.Creating React components to show a list of all hats and their details, also show a form to create a new hat. ALso provide a way to delete a hat
+
+The Hats Microservice is a RESTful API that provides information about various types of hats. This service allows users to retrieve data on different hat styles, their attributes, and related information.It also provides a RESTful API for retrieving information about hats. You can make HTTP requests to the provided endpoints to access the data.The Poller file will get data from the wardrobe api to get the list of locations the hats are in. Each location will be created in the hats api.The Hats api will have the following routes : "api/hats". this route goes into the data and get the list of all the hats. To get the route for the shoes in a specific location you would use "api/location/location_id.hats". To be able to delete a hat from the database you would use this route "api/hats/hat_id" to be able to do that.
 
 ## How to use this repo
 
